@@ -8,7 +8,18 @@ void main() => runApp(MaterialApp(
           title: const Text("Custom buttons"),
         ),
         body: Center(
-          child: SelectableButton(),
+          child:Column(
+            mainAxisSize:  MainAxisSize.min,
+            children:const[
+              SelectableButton(),
+              SelectableButton(),
+              SelectableButton(),
+              SelectableButton(),
+
+            ],
+          ),
+
+        
         ),
       ),
     ));
@@ -25,6 +36,11 @@ class SelectableButton extends StatefulWidget {
 class _SelectableButtonState extends State<SelectableButton> {
 
   bool isSelected =false;
+  String get buttonText => isSelected ? "Selected" :"Not Selected";
+  Color get butonTextColor => isSelected ? Colors.white : Colors.black;
+
+  Color get buttonBackgroundColor => isSelected ? Colors.blue[500]! : Colors.blue[50]!;
+
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +55,11 @@ class _SelectableButtonState extends State<SelectableButton> {
                 });
               },
               style: ElevatedButton.styleFrom( 
-                backgroundColor: isSelected ? Colors.blue: Colors.lightBlue.shade50,
-                foregroundColor: isSelected ? Colors.white : Colors.black,
+                backgroundColor: buttonBackgroundColor,
+                foregroundColor: butonTextColor,
               ),
               child: Center(
-                child: Text(
-                  isSelected? "Selected":"Not Selected",
-                ),
+                child: Text(buttonText),
               )),
         );
   }
